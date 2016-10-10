@@ -1,5 +1,6 @@
 import os
 import sys
+import time
 
 
 def splitFile(filePath, beg, end):
@@ -7,7 +8,9 @@ def splitFile(filePath, beg, end):
     beg = fsize * beg / 100
     end = fsize * end / 100
     f = open(filePath, 'rb')
-    o = open('1.rmvb', 'wb')
+    bname=os.path.basename(filePath)
+    newPath=filePath[:len(filePath)-len(bname)]+str(int(time.time()))+bname[bname.index('.'):]
+    o = open(newPath, 'wb')
     f.seek(beg)
     length = end - beg
     cut = 1024
